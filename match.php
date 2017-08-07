@@ -1,5 +1,5 @@
 <?php
-   error_reporting(E_ALL);
+   # error_reporting(E_ALL);
    $mysqli = new mysqli(
     "localhost",
     "",
@@ -13,6 +13,7 @@
     limit 10
 MATCH
    );
+   # Is entered text a substring of one or more descriptions?
    $compare = "%".$_GET["partial"]."%";
    $query->bind_param("s", $compare);
    # Build array of matches
