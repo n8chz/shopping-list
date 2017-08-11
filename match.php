@@ -1,11 +1,15 @@
 <?php
-   # error_reporting(E_ALL);
+   #error_reporting(E_ALL);
+   require("./db-params.php");
    $mysqli = new mysqli(
-    "localhost",
-    "",
-    "",
-    "astoundi_shoplist"
+    $DB_URL,
+    $DB_USER,
+    $DB_PW,
+    $DB_NAME
    );
+   if ($errno = $mysqli->connect_errno) {
+    echo "<p>MySQL error #$errno</p>\n";
+   }
    $query = $mysqli->prepare(<<<MATCH
     select id, description
     from shoplist
@@ -26,8 +30,6 @@ MATCH
    $query->close();
    $mysqli->close();
    # Now to serialize as JSON
-   # echo json_encode(json_encode($res->fetch_all()));
-   # echo json_encode($res->fetch_all());
    echo json_encode($matches);
 ?>
 

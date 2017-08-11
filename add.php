@@ -1,12 +1,12 @@
 <?php
   $description = $_POST["description"];
-  #$description = "vitamin c";
-  $mysqli = new mysqli(
-    "localhost",
-    "",
-    "",
-    "astoundi_shoplist"
-  );
+   require("./db-params.php");
+   $mysqli = new mysqli(
+    $DB_URL,
+    $DB_USER,
+    $DB_PW,
+    $DB_NAME
+   );
   require("./get_id.php");
   $id = get_id($mysqli, $description);
   if ($id != -1) { # description found in table
@@ -16,7 +16,7 @@
       where id = ?
 UPDATE
     );
-    $query->bind_param("i", $row[0]);
+    $query->bind_param("i", $id);
     $query->execute();
     $query->close();
   }

@@ -62,11 +62,12 @@ body>div {
 <div>
   <?php
    # error_reporting(E_ALL);
+   require("./db-params.php");
    $mysqli = new mysqli(
-    "localhost",
-    "",
-    "",
-    "astoundi_shoplist"
+    $DB_URL,
+    $DB_USER,
+    $DB_PW,
+    $DB_NAME
    );
    if ($errno = $mysqli->connect_errno)
    {

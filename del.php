@@ -1,10 +1,11 @@
 <?php
   $id = $_POST["id"];
+  require("./db-params.php");
   $mysqli = new mysqli(
-    "localhost",
-    "",
-    "",
-    "astoundi_shoplist"
+    $DB_URL,
+    $DB_USER,
+    $DB_PW,
+    $DB_NAME
   );
   $query = $mysqli->prepare(<<<DEL
     update shoplist
